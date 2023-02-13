@@ -87,8 +87,8 @@ void dgemm_block(double a[N][N], double b[N][N], double c[N][N])
         for (int jj = 0; jj < N; jj += BS) {
             for (int kk = 0; kk < N; kk += BS) {
                 for (int i = ii; i < IMIN(N, ii + BS); i++) {
-                    for (int j = jj; j < IMIN(N, jj + BS); j++) {
-                        for (int k = kk; k < IMIN(N, kk + BS); k++) {
+                    for (int k = jj; k < IMIN(N, kk + BS); k++) {
+                        for (int j = jj; j < IMIN(N, j + BS); j++) {
                             c[i][j] += a[i][k] * b[k][j];
                         }
                     }
@@ -128,7 +128,7 @@ int main()
 {
     double t1, t2, t3;
 
-    #if 1
+    #if 0
     matrix_init(a, b, c);
     t1 = wtime();
     for (int i = 0; i < NREPS; i++) {
@@ -139,7 +139,7 @@ int main()
     printf("# DGEMM def: N=%d, elapsed time (sec) %.6f\n", N, t1);
     #endif
 
-    #if 1
+    #if 0
     matrix_init(a, b, c);
     t2 = wtime();
     for (int i = 0; i < NREPS; i++) {
@@ -150,7 +150,7 @@ int main()
     printf("# DGEMM interchange: N=%d, elapsed time (sec) %.6f\n", N, t2);
     #endif
 
-    #if 1
+    #if 0
     matrix_init(a, b, c);
     t3 = wtime();
     for (int i = 0; i < NREPS; i++) {
