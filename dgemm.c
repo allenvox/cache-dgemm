@@ -12,6 +12,7 @@
 #endif
 
 #define NREPS 3
+#define IMIN(A, B) ((A < B) ? A : B)
 
 /* Block (tail) size */
 #define BS (CACHELINE_SIZE / sizeof(double))
